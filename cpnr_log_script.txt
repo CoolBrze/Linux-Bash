@@ -27,4 +27,6 @@ if [[ -e "$FILE" ]]; then
     mv $DATE$FILENAME.tar.gz $LOG_LOCATION
 fi
 
+cd ~
+
 exit 0
