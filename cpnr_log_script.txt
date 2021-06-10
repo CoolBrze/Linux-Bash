@@ -1,0 +1,28 @@
+#!/bin/bash
+
+## The purpose of this script is to archive and zip a collection of files with a common prefix and move them to a directory.
+## EXAMPLE: If an application creates subsequent log files from [logfile] with the convention [logfile.01], [logfile.02] .... [logfile.10] you should select a trigger file, say [logfile.10].
+##          You will then set the FILE variable to PATH/[logfile.10]. You will also need to assign a common prefix to the variable LOG_FILES, so that the script will know which files to archive (for example LOG_FILES=[logfile.])
+##          Finally, you will select a directory to move the zipped/archived file with the LOG_LOCATION variable
+##
+##
+
+FILE=/home/ubuntu/file1.01
+
+##### Generates today's date and applies it to the file name #####
+DATE=$(date +"%m_%d_%Y")
+FILENAME='_cpnr_archive'
+
+##### Input the correct naming convention for the duplicate files as LOG_FILES #####
+LOG_FILES=file1.
+
+##### Path for final compressed/zipped file #####
+LOG_LOCATION=/home/ubuntu/logs
+
+if [[ -e "$FILE" ]]; then
+    tar -czf $DATE$FILENAME.tar.gz $LOG_FILES*
+    rm -f $LOG_FILES*
+    mv $DATE$FILENAME.tar.gz $LOG_LOCATION
+fi
+
+exit 0
