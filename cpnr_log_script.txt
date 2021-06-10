@@ -7,17 +7,19 @@
 ##
 ##
 
-FILE=/home/ubuntu/file1.01
+FILE=
 
 ##### Generates today's date and applies it to the file name #####
 DATE=$(date +"%m_%d_%Y")
 FILENAME='_cpnr_archive'
 
 ##### Input the correct naming convention for the duplicate files as LOG_FILES #####
-LOG_FILES=file1.
+LOG_FILES=
 
 ##### Path for final compressed/zipped file #####
-LOG_LOCATION=/home/ubuntu/logs
+LOG_LOCATION=
+
+cd "$(dirname $FILE)"
 
 if [[ -e "$FILE" ]]; then
     tar -czf $DATE$FILENAME.tar.gz $LOG_FILES*
